@@ -1,1 +1,1 @@
- cd lessons/vue-project
+ cd lessons/vue-project && npm run dev

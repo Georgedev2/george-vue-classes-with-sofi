@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ProfileView from '@/views/ProfileView.vue'
+import ProductListPage from '@/MiniShoppingCart/Product/ProductListPage.vue'
+// import ProductListPage from '@/MiniShoppingCart/ProductListPage.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,8 +24,22 @@ const router = createRouter({
     {
       path:'/profile',
       component:ProfileView
-    }
+    },
+   {
+    path:'/products',
+    component:ProductListPage
+   }
+
   ],
 })
 
 export default router
+
+ // {
+    //   path: '/cart',
+    //   component: () => import('../views/CartView.vue'),
+    // },
+    //  {
+    //   path: '/products',
+    //   component: ProductListPage,
+    // },

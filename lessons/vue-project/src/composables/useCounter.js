@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 export function useCounter() {
     const count = ref(10)
@@ -7,9 +7,11 @@ export function useCounter() {
         count.value++
     }
 
+    onMounted(() => {})
+        console.log('Component mounted');
+    
     return {
         count,
         increment
     }
-
 }
