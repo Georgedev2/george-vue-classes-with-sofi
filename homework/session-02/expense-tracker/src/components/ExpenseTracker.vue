@@ -39,7 +39,7 @@ const filteredExpenses = computed(() => {
 })
 
 function addExpense() {
-  debugger;
+
   if (!form.description || !form.amount || !form.date) return
 
   expenses.value.push({
