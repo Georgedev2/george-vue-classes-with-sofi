@@ -39,6 +39,7 @@ const filteredExpenses = computed(() => {
 })
 
 function addExpense() {
+  debugger;
   if (!form.description || !form.amount || !form.date) return
 
   expenses.value.push({
@@ -73,7 +74,7 @@ function deleteExpense(id) {
         </option>
       </select>
       <input v-model="form.date" type="date" required />
-      <button type="submit">Add Expense</button>
+      <button type="submit" @click="addExpense">Add Expense</button>
     </form>
 
     <div class="total">Total: ${{ total.toFixed(2) }}</div>
