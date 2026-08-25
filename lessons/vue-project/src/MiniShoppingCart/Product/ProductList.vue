@@ -1,16 +1,6 @@
 
-<script>
+<script setup>
    import { computed, ref, watch } from 'vue';
-// import ProductListPage from './ProductList.vue';
-
-export default {
-  // name: 'ProductList',
-  // components: {
-  //   ProductList
-  // },
-  setup() {
- 
-
 const carts=ref([])
 
 const products=ref([
@@ -39,6 +29,7 @@ const products=ref([
 
 const totalItemsInCart=computed(() => carts.value.reduce((total, item) => total + item.qty, 0));
 const totalPrice=computed(() => carts.value.reduce((total, item) => total + item.price * item.qty, 0));
+
 const addProductToCart =(product)=>{
 
    const foundProduct= carts.value.find((cartItem)=> cartItem.id==product.id)// null
@@ -56,6 +47,22 @@ const addProductToCart =(product)=>{
 
 }
 
+
+const addRemoveprouductFromCart =(product)=>{
+
+   const foundProduct= carts.value.find((cartItem)=> cartItem.id==product.id)// null
+
+   if(foundProduct && foundProduct.qty>1){
+
+    foundProduct.qty--;
+   }else{
+    carts.value = carts.value.filter((cartItem)=> cartItem.id!==product.id) 
+    
+   }
+   
+
+}
+
 watch(
   carts,
   (newCart, oldCart) => {
@@ -66,47 +73,8 @@ watch(
   }
 )
 
-  return {
-    products,
-    addProductToCart,
-    carts,
-    totalPrice,  totalItemsInCart
-   }
-}
-}
 
 
-// const products = ref([
-//   { id: 1, name: 'Product 1', price: 100, qty:1},
-//   { id: 2, name: 'Product 2', price: 200, qty:1},
-//   { id: 3, name: 'Product 3', price: 300 , qty:1},
-// ]);
-
-// const carts=ref([])
-
-// const addProductToCart =(product)=>{
-
-//    const foundProduct= carts.value.find((cartItem)=> cartItem.id==product.id)
-
-//    if(foundProduct){
-//     foundProduct.qty++;
-//    }else{
-//     carts.value.push({
-//         ...product,
-//         qty:1
-//     })
-//    }
-
-// }
-
-// watch(
-//   carts,
-//   (newCart, oldCart) => {
-//     console.log("New cart:", newCart[0]);
-//     console.log("Old cart:", oldCart);
-//   },
-//   { deep: true }
-// );
 
 </script>
 <template>
@@ -116,17 +84,19 @@ watch(
         <div class="product-name">{{ product.name }}</div>
         <div class="product-price">{{ product.currency }}{{ product.price }}</div>
         <button @click="addProductToCart(product)">Add to Cart</button>
+        <button @click="addRemoveprouductFromCart(product)">REMOVE</button>
       </div>
     </div>
 
     <div class="cart">
       <div class="cart-label">Cart</div>
       <div class="cart-count">{{ carts.length }}</div>
-    </div>  
-    <div v-for="cart in carts" :key="cart.id">
-      <p>{{ cart.name }} - Quantity: {{  totalItemsInCart }}</p  >
+    </div> 
 
+    <div v-for="cartItem in carts" :key="cartItem.id">
+      <p>{{ cartItem.name }} - Quantity: {{ cartItem.qty }}</p>
     </div>
+
     <div v-if="carts.length === 0">
       <p>Your cart is empty.</p>
   </div>
