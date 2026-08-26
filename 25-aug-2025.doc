@@ -1,0 +1,76 @@
+Type aliases & Interfaces: interface and type can describe the shape of an object.
+Type aliases
+The most common convention is to use PascalCase for type aliases:
+
+type Product = {}
+type User = {}
+type Order = {}
+type CartItem = {}
+type PaymentDetails = {}
+
+type Product = {
+  id: number
+  name: string
+  price: number
+}
+
+
+
+interfaces
+Why interface when their is type aliases? 
+The main reason is that interface has some capabilities and behavior that type doesn't.
+interface features such as extends or declaration merging.
+interface Product {
+  id: number
+  name: string
+  price: number
+}
+
+You can use extends interface:
+
+interface Product {
+  id: number
+  name: string
+}
+
+interface DigitalProduct extends Product {
+  downloadUrl: string
+}
+
+1. With type, you would typically use an intersection:
+
+type Product = {
+  id: number
+  name: string
+}
+
+type DigitalProduct = Product & {
+  downloadUrl: string
+}
+
+2. Interfaces support declaration merging: You can declare the same interface twice and TypeScript merges them into
+
+interface Product {
+  id: number
+}
+
+interface Product {
+  name: string
+}
+
+TypeScript merges them into:
+
+
+interface Product {
+  id: number
+  name: string
+}
+
+You cannot do the same with a type alias: The merging ability is useful, particularly useful in some libraries and frameworks where you want to extend existing types.
+
+DATA BINDING
+In Vue, data binding means connecting the data in your JavaScript/TypeScript code to the HTML template, so that when the data changes, Vue can automatically update the UI.
+Two-way data binding using v-model
+
+
+

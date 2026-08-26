@@ -1,9 +1,68 @@
 
-<script setup>
-   import { computed, ref, watch } from 'vue';
-const carts=ref([])
 
-const products=ref([
+<script setup lang="ts" >
+   import { computed, ref, watch } from 'vue';
+ type Count=number; // Pascal 
+const count =ref<number>(0)// generic in typescript
+
+  const name:string="pual"
+
+
+type DaysOfTheWeek= 'Monday'| "Tuseday"| "Wenesday"| 'Thursday'| "Friday";
+
+  const daysOfTheWeek=ref<DaysOfTheWeek>("Monday")
+
+
+   type Product = {
+    name: string;
+    id: number;
+    price: number;
+    qty: number;
+    currency: string;
+
+  };
+
+
+     interface MYProduct  {
+    name: string;
+    id: number;
+    price: number;
+    qty: number;
+    currency: string;
+
+  };
+
+    interface MYProduct  {
+    name: string;
+    id: number;
+    price: number;
+    qty: number;
+    currency: string;
+    isActive?: boolean; // Optional property
+
+  };
+
+  type CartItem = {
+    name: string;
+    id: number;
+    price: number;
+    qty: number;
+    currency: string;
+  };
+const carts=ref<CartItem[]>([])
+
+const user=ref({
+  username:'',
+  password:'',
+  email:'',
+  name:''
+})
+// const username=ref('')
+// const password=ref('');
+// const email=ref('');
+// const name=ref('');
+
+const products=ref<Product[]>([
   {
     name: 'Product 1',
     id: 1,
@@ -30,7 +89,7 @@ const products=ref([
 const totalItemsInCart=computed(() => carts.value.reduce((total, item) => total + item.qty, 0));
 const totalPrice=computed(() => carts.value.reduce((total, item) => total + item.price * item.qty, 0));
 
-const addProductToCart =(product)=>{
+const addProductToCart =(product: Product)=>{
 
    const foundProduct= carts.value.find((cartItem)=> cartItem.id==product.id)// null
 
@@ -48,7 +107,8 @@ const addProductToCart =(product)=>{
 }
 
 
-const addRemoveprouductFromCart =(product)=>{
+ 
+const addRemoveprouductFromCart =(product: Product)=>{
 
    const foundProduct= carts.value.find((cartItem)=> cartItem.id==product.id)// null
 
@@ -73,9 +133,22 @@ watch(
   }
 )
 
+watch(
+ user,
+  (newUser, oldUser) => {
+    console.log("New user data:", newUser);
+    console.log("Old user data:", oldUser);
+  },{
+    deep:true
+  }
+)
 
+const handleSubmit = (event: Event) => {
+  // event.preventDefault(); // Prevent the default form submission behavior
+  console.log("Form submitted with user data:", user.value);
 
-
+  // You can perform further actions here, such as sending the data to a server
+};  
 </script>
 <template>
   <div class="products-container">
@@ -103,6 +176,13 @@ watch(
   <div v-else>
       <p>Total Items in Cart:$ {{totalPrice }}</p>
   </div>
+  <form @submit.prevent="handleSubmit" >
+    <input type="text" v-model="user.username" placeholder="Username"> <br>
+    <input type="password" v-model="user.password" placeholder="Password"> <br>
+    <input type="email" v-model="user.email" placeholder="Email"> <br>
+    <input type="text" v-model="user.name" placeholder="Name"> <br>
+    <button type="submit" >Submit</button>
+  </form>
   </div>  
 
 </template>
