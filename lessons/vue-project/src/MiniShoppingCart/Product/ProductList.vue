@@ -1,4 +1,40 @@
 
+<template>
+  <div class="products-container">
+    <div class="product-list">
+      <div class="product" v-for="product in products" :key="product.id">
+        <div class="product-name">{{ product.name }}</div>
+        <div class="product-price">{{ product.currency }}{{ product.price }}</div>
+        <button @click="addProductToCart(product)">Add to Cart</button>
+        <button @click="addRemoveprouductFromCart(product)">REMOVE</button>
+      </div>
+    </div>
+
+    <div class="cart">
+      <div class="cart-label">Cart</div>
+      <div class="cart-count">{{ carts.length }}</div>
+    </div> 
+
+    <div v-for="cartItem in carts" :key="cartItem.id">
+      <p>{{ cartItem.name }} - Quantity: {{ cartItem.qty }}</p>
+    </div>
+
+    <div v-if="carts.length === 0">
+      <p>Your cart is empty.</p>
+  </div>
+  <div v-else>
+      <p>Total Items in Cart:$ {{totalPrice }}</p>
+  </div>
+  <form @submit.prevent="handleSubmit" >
+    <input type="text" v-model="user.username" placeholder="Username"> <br>
+    <input type="password" v-model="user.password" placeholder="Password"> <br>
+    <input type="email" v-model="user.email" placeholder="Email"> <br>
+    <input type="text" v-model="user.name" placeholder="Name"> <br>
+    <button type="submit" >Submit</button>
+  </form>
+  </div>  
+
+</template>
 
 <script setup lang="ts" >
    import { computed, ref, watch } from 'vue';
@@ -150,42 +186,6 @@ const handleSubmit = (event: Event) => {
   // You can perform further actions here, such as sending the data to a server
 };  
 </script>
-<template>
-  <div class="products-container">
-    <div class="product-list">
-      <div class="product" v-for="product in products" :key="product.id">
-        <div class="product-name">{{ product.name }}</div>
-        <div class="product-price">{{ product.currency }}{{ product.price }}</div>
-        <button @click="addProductToCart(product)">Add to Cart</button>
-        <button @click="addRemoveprouductFromCart(product)">REMOVE</button>
-      </div>
-    </div>
-
-    <div class="cart">
-      <div class="cart-label">Cart</div>
-      <div class="cart-count">{{ carts.length }}</div>
-    </div> 
-
-    <div v-for="cartItem in carts" :key="cartItem.id">
-      <p>{{ cartItem.name }} - Quantity: {{ cartItem.qty }}</p>
-    </div>
-
-    <div v-if="carts.length === 0">
-      <p>Your cart is empty.</p>
-  </div>
-  <div v-else>
-      <p>Total Items in Cart:$ {{totalPrice }}</p>
-  </div>
-  <form @submit.prevent="handleSubmit" >
-    <input type="text" v-model="user.username" placeholder="Username"> <br>
-    <input type="password" v-model="user.password" placeholder="Password"> <br>
-    <input type="email" v-model="user.email" placeholder="Email"> <br>
-    <input type="text" v-model="user.name" placeholder="Name"> <br>
-    <button type="submit" >Submit</button>
-  </form>
-  </div>  
-
-</template>
 
 <style scoped>
 

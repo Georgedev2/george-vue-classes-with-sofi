@@ -1,9 +1,21 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 
+export type Product = {
+  name: string;
+  id: number;
+  price: number;
+  qty: number;
+  currency: string;
+};
+
 export const useCartStore = defineStore('cart', () => {
 
-  const carts = ref([])
+  const carts = ref<Product[]>([])
+  /* The difference is purely for TypeScript: now it knows every item 
+  in carts.value has .id, .qty, .price, etc., and 
+  can catch mistakes (like typos or wrong types) as you write code.*/
+
 
   const totalItems = computed(() =>
     carts.value.reduce(
@@ -19,40 +31,27 @@ export const useCartStore = defineStore('cart', () => {
     )
   )
 
-  function addProduct(product) {
-    const existingProduct = carts.value.find(
-      item => item.id === product.id
-    )
+  //removed addproduct because is not the one being used in the ProductList component
 
-    if (existingProduct) {
-      existingProduct.qty++
+  const addProductToCart = (product: Product) => {
+
+    const foundProduct = carts.value.find((cartItem) => cartItem.id == product.id)// null
+
+    if (foundProduct) {
+
+      foundProduct.qty++;
     } else {
       carts.value.push({
         ...product,
         qty: 1
       })
     }
+
+
   }
 
-  const addProductToCart =(product)=>{
 
-   const foundProduct= carts.value.find((cartItem)=> cartItem.id==product.id)// null
-
-   if(foundProduct){
-
-    foundProduct.qty++;
-   }else{
-    carts.value.push({
-        ...product,
-        qty:1
-    })
-   }
-   
-
-}
-
-
-  function removeProduct(product) {
+  function removeProduct(product: Product) {
     const existingProduct = carts.value.find(
       item => item.id === product.id
     )
@@ -70,7 +69,6 @@ export const useCartStore = defineStore('cart', () => {
     carts,
     totalItems,
     totalPrice,
-    addProduct,
     removeProduct, addProductToCart
   }
 })
