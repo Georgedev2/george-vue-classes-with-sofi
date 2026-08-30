@@ -1,14 +1,17 @@
-<script setup>
-import ProductList from './components/ProductList.vue'
-import ShoppingCart from './components/ShoppingCart.vue'
-</script>
-
 <template>
   <main class="app">
-    <ProductList />
-    <ShoppingCart />
+    <OptionsApi />
+    <CompositionApi />
+  
   </main>
 </template>
+
+<script setup>
+//import ProductList from './components/ProductList.vue'
+//import ShoppingCart from './components/ShoppingCart.vue'
+import OptionsApi from './components/OptionsApi.vue'
+import CompositionApi from './components/CompositionApi.vue'
+</script>
 
 <style scoped>
 .app {
