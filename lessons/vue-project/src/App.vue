@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import SearchInput from './SearchInput/SearchInput.vue';
+
 </script>
 
 <template>
@@ -14,6 +16,7 @@ import HelloWorld from './components/HelloWorld.vue'
         <RouterLink to="/profile">Profile</RouterLink> -->
         <RouterLink to="/products">Products</RouterLink>
         <RouterLink to="/cart">Cart</RouterLink>
+        <RouterLink to="/search">SearchInput</RouterLink>
       </nav>
     </div>
   </header>

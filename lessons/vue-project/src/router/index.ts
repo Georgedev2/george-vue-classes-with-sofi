@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import ProfileView from '@/views/ProfileView.vue'
 import ProductListPage from '@/MiniShoppingCart/Product/ProductListPage.vue'
 import CartPage from '@/MiniShoppingCart/Cart/CartPage.vue'
+import SearchInput from '@/SearchInput/SearchInput.vue'
 // import ProductListPage from '@/MiniShoppingCart/ProductListPage.vue'
 
 
@@ -34,7 +35,11 @@ const router = createRouter({
     path:'/cart',
     component:CartPage
    }
-
+,
+ {
+    path:'/search',
+    component:SearchInput
+   }
   ],
 })
 
