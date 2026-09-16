@@ -2,6 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import SearchInput from './SearchInput/SearchInput.vue';
+import Login from './MiniShoppingCart/Login/login.vue';
 
 </script>
 
@@ -17,6 +18,7 @@ import SearchInput from './SearchInput/SearchInput.vue';
         <RouterLink to="/products">Products</RouterLink>
         <RouterLink to="/cart">Cart</RouterLink>
         <RouterLink to="/search">SearchInput</RouterLink>
+                <RouterLink to="/login">Login</RouterLink>
       </nav>
     </div>
   </header>

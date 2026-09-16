@@ -4,7 +4,9 @@ import ProfileView from '@/views/ProfileView.vue'
 import ProductListPage from '@/MiniShoppingCart/Product/ProductListPage.vue'
 import CartPage from '@/MiniShoppingCart/Cart/CartPage.vue'
 import SearchInput from '@/SearchInput/SearchInput.vue'
+import Login from '@/MiniShoppingCart/Login/login.vue'
 // import ProductListPage from '@/MiniShoppingCart/ProductListPage.vue'
+
 
 
 const router = createRouter({
@@ -39,6 +41,10 @@ const router = createRouter({
  {
     path:'/search',
     component:SearchInput
+   },
+    {
+    path:'/login',
+    component: Login,
    }
   ],
 })
