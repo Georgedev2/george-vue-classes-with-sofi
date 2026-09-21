@@ -1,4 +1,5 @@
 <template>
+<div>{{ error }}</div>
 
     <form action="
     ">
@@ -12,7 +13,7 @@
 <script setup>
 import { ref, watch } from 'vue';
 
-
+let list =[1, 4, 45]
 
 const formdata=ref({
     username:'',
@@ -27,10 +28,18 @@ console.log(newState)},{
 
 )
 
+
 const submit=(e)=>{
 
 console.log(formdata.value)
 
-fetch()
+try {
+  // make the api call
+//status code is 400, 500 503, 502
+} catch (error) {
+  
 }
+}
+
+
 </script>
