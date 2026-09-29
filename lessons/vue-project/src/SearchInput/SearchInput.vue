@@ -9,11 +9,13 @@
   </ul>
 <div>{{ look }}</div>
   <Button @sofi="handleClick" :label="searchQuery"  @george="handleMeWell" />
+  <NewCountComposition/>
 </template>
 <script setup>
 import { computed, reactive, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import Button from './Button.vue'
+import NewCountComposition from '@/ReFactoringOptionAPI/NewCountComposition.vue'
 
 // data type primitive string, number, boolean, 
 // object data type: { }, array etc..

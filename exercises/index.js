@@ -1,29 +1,37 @@
-console.log('HAY')
+var name=undefined
+let name2;
+const user = {
+  name: "George",
+  address: {
+    city: "Lagos"
+  }
+};
 
-// console.log(name)
+// const copy = user;
 
-// let name = "George"
+// copy.address.city="UK"
+// console.log('copy',copy)
 
-// console.log(name)
+// console.log('user',user)
+const c={...user}
+user.address.city="GEORGE";
 
-// var name = "George"
+console.log('original', user)
 
-const user={
-    name:'k',
-    age:10
-}
+console.log('copy', c)
 
-const user3={
-school:' y',
-...user
-}
+// const newCopy=JSON.parse(JSON.stringify(user))
+// newCopy.address.city='Japan'
 
+// console.log('user',user)
 
-const foo=(a, ...b)=>{
-    console.log(b)
-}
+// console.log(' newCopy', newCopy)
 
-foo(5,5,6,6,8,8,98)
+console.log(name)
+var name="ABle"
+
+console.log(name2)
+let name2="joy"
 
 
-[1,2,3,4].reduce((arr, acc)=>{}, )
+
